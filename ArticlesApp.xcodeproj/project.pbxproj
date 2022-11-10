@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		483B182529117B99004D4C8F /* ArticlesAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483B182429117B99004D4C8F /* ArticlesAppApp.swift */; };
+		483B182529117B99004D4C8F /* ArticlesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483B182429117B99004D4C8F /* ArticlesApp.swift */; };
 		483B182729117B99004D4C8F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483B182629117B99004D4C8F /* ContentView.swift */; };
 		483B182929117B9A004D4C8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 483B182829117B9A004D4C8F /* Assets.xcassets */; };
 		483B182C29117B9A004D4C8F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 483B182B29117B9A004D4C8F /* Preview Assets.xcassets */; };
@@ -47,7 +47,7 @@
 
 /* Begin PBXFileReference section */
 		483B182129117B99004D4C8F /* ArticlesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArticlesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		483B182429117B99004D4C8F /* ArticlesAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesAppApp.swift; sourceTree = "<group>"; };
+		483B182429117B99004D4C8F /* ArticlesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesApp.swift; sourceTree = "<group>"; };
 		483B182629117B99004D4C8F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		483B182829117B9A004D4C8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		483B182B29117B9A004D4C8F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -118,13 +118,11 @@
 		483B182329117B99004D4C8F /* ArticlesApp */ = {
 			isa = PBXGroup;
 			children = (
-				483B185D29118262004D4C8F /* DataRepo */,
-				483B185A291181E3004D4C8F /* Domain */,
-				483B185229117E10004D4C8F /* ViewModel */,
 				483B184E29117BA7004D4C8F /* Application */,
-				483B182429117B99004D4C8F /* ArticlesAppApp.swift */,
-				483B182629117B99004D4C8F /* ContentView.swift */,
-				483B182829117B9A004D4C8F /* Assets.xcassets */,
+				483B1876291D6EAD004D4C8F /* Presentation */,
+				483B185A291181E3004D4C8F /* Domain */,
+				483B185D29118262004D4C8F /* DataRepo */,
+				483B187A291D6F75004D4C8F /* Resources */,
 				483B182A29117B9A004D4C8F /* Preview Content */,
 			);
 			path = ArticlesApp;
@@ -158,10 +156,11 @@
 		483B184E29117BA7004D4C8F /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				483B182429117B99004D4C8F /* ArticlesApp.swift */,
+				483B1879291D6F30004D4C8F /* Common */,
+				483B1878291D6F12004D4C8F /* Dependencies */,
 				483B1867291563B9004D4C8F /* Utility */,
 				483B184F29117BB5004D4C8F /* Services */,
-				483B1858291181AB004D4C8F /* Environment.swift */,
-				483B186229118534004D4C8F /* AppDI.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -249,6 +248,47 @@
 				483B1860291183A9004D4C8F /* ArticlesDomainDataRepoInterface.swift */,
 			);
 			path = Usecase;
+			sourceTree = "<group>";
+		};
+		483B1876291D6EAD004D4C8F /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				483B1877291D6EBB004D4C8F /* View */,
+				483B185229117E10004D4C8F /* ViewModel */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		483B1877291D6EBB004D4C8F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				483B182629117B99004D4C8F /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		483B1878291D6F12004D4C8F /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				483B186229118534004D4C8F /* AppDI.swift */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		483B1879291D6F30004D4C8F /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				483B1858291181AB004D4C8F /* Environment.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		483B187A291D6F75004D4C8F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				483B182829117B9A004D4C8F /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -394,7 +434,7 @@
 				483B185129117BCB004D4C8F /* NetworkService.swift in Sources */,
 				483B1869291563D0004D4C8F /* NetworkError.swift in Sources */,
 				483B185C291181FE004D4C8F /* ArticlesUseCase.swift in Sources */,
-				483B182529117B99004D4C8F /* ArticlesAppApp.swift in Sources */,
+				483B182529117B99004D4C8F /* ArticlesApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
