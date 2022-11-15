@@ -24,7 +24,7 @@ class ArticlesDataRepo: ArticlesDomainDataRepoInterface {
         try await self.repo.fetch()
     }
     
-    func save(articles: [ArticleEntity], toDevice: Bool) async throws {
+    func save(articles: [ArticleEntity]) async throws {
         try await self.repo.save(articles: articles)
     }
 }

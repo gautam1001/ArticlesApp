@@ -19,6 +19,7 @@ struct ContentView: View {
             do {
                 let articles = try await viewModel.fetchArticles()
                 print(articles)
+                try await viewModel.saveToDevice()
             } catch {
                 print(error)
             }

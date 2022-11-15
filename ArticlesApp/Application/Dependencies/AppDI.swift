@@ -11,10 +11,11 @@ class AppDI {
     
     func articlesDI() -> ContentViewModel {
         let remoteRepo =  ArticlesRemoteRepo(url: Environment.articlesUrl, service: NetworkService())
-        let repo = ArticlesDataRepo(remoteRepo)
-//        let localRepo =  ArticlesLocalRepo()
-//        let repo = ArticlesDataRepo(localRepo)
-        let useCase = ArticlesUseCase(repo: repo)
-        return ContentViewModel(usecase: useCase)
+        let remoteDataRepo = ArticlesDataRepo(remoteRepo)
+        let remote = ArticlesUseCase(repo: remoteDataRepo)
+        let localRepo =  ArticlesLocalRepo(dataManager: CoreDataManager.shared)
+        let localDataRepo = ArticlesDataRepo(localRepo)
+        let local = ArticlesLocalUsecase(repo: localDataRepo)
+        return ContentViewModel(remotecase: remote, localcase: local)
     }
 }

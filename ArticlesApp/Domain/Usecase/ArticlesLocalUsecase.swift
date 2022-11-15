@@ -1,13 +1,13 @@
 //
-//  ArticlesUseCase.swift
+//  ArticlesLocalUsecase.swift
 //  ArticlesApp
 //
-//  Created by Prashant Gautam on 01/11/22.
+//  Created by Prashant Gautam on 15/11/22.
 //
 
 import Foundation
 
-class ArticlesUseCase: ArticlesUseCaseInterface {
+class ArticlesLocalUsecase: ArticlesUseCaseInterface {
     
     let repo: ArticlesDomainDataRepoInterface
     

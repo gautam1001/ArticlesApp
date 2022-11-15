@@ -28,7 +28,7 @@ class CoreDataManager {
         mainContext = persistentContainer.viewContext
         mainContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         backgroundContext = persistentContainer.newBackgroundContext()
-        backgroundContext.parent = mainContext
+        //backgroundContext.parent = mainContext
         backgroundContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         getCoreDataDBPath()
     }

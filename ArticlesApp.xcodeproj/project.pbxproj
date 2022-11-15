@@ -30,6 +30,8 @@
 		483B18A22923AC2F004D4C8F /* ArticlesAppPersistance.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 483B18A02923AC2F004D4C8F /* ArticlesAppPersistance.xcdatamodeld */; };
 		483B18AA2923AD72004D4C8F /* ArticleDataModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483B18A82923AD72004D4C8F /* ArticleDataModel+CoreDataClass.swift */; };
 		483B18AB2923AD72004D4C8F /* ArticleDataModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483B18A92923AD72004D4C8F /* ArticleDataModel+CoreDataProperties.swift */; };
+		48F9E1122923B6BD00D11D76 /* ArticlesLocalUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F9E1112923B6BD00D11D76 /* ArticlesLocalUsecase.swift */; };
+		48F9E1142923B6DE00D11D76 /* ArticlesUseCaseInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F9E1132923B6DE00D11D76 /* ArticlesUseCaseInterface.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,8 @@
 		483B18A12923AC2F004D4C8F /* ArticlesAppPersistance.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ArticlesAppPersistance.xcdatamodel; sourceTree = "<group>"; };
 		483B18A82923AD72004D4C8F /* ArticleDataModel+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ArticleDataModel+CoreDataClass.swift"; sourceTree = "<group>"; };
 		483B18A92923AD72004D4C8F /* ArticleDataModel+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ArticleDataModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		48F9E1112923B6BD00D11D76 /* ArticlesLocalUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesLocalUsecase.swift; sourceTree = "<group>"; };
+		48F9E1132923B6DE00D11D76 /* ArticlesUseCaseInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesUseCaseInterface.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +259,8 @@
 			isa = PBXGroup;
 			children = (
 				483B185B291181FE004D4C8F /* ArticlesUseCase.swift */,
+				48F9E1112923B6BD00D11D76 /* ArticlesLocalUsecase.swift */,
+				48F9E1132923B6DE00D11D76 /* ArticlesUseCaseInterface.swift */,
 				483B1860291183A9004D4C8F /* ArticlesDomainDataRepoInterface.swift */,
 			);
 			path = Usecase;
@@ -457,11 +463,13 @@
 				483B18A22923AC2F004D4C8F /* ArticlesAppPersistance.xcdatamodeld in Sources */,
 				483B189A2923979D004D4C8F /* CoreDataManager.swift in Sources */,
 				483B1859291181AB004D4C8F /* Environment.swift in Sources */,
+				48F9E1122923B6BD00D11D76 /* ArticlesLocalUsecase.swift in Sources */,
 				483B187129156895004D4C8F /* ArticleEntity.swift in Sources */,
 				483B1865291560FF004D4C8F /* ArticlesRemoteRepo.swift in Sources */,
 				483B185729117E9E004D4C8F /* Articles.swift in Sources */,
 				483B182729117B99004D4C8F /* ContentView.swift in Sources */,
 				483B186D291565D6004D4C8F /* ArticlesLocalRepo.swift in Sources */,
+				48F9E1142923B6DE00D11D76 /* ArticlesUseCaseInterface.swift in Sources */,
 				483B185129117BCB004D4C8F /* NetworkService.swift in Sources */,
 				483B1869291563D0004D4C8F /* NetworkError.swift in Sources */,
 				483B185C291181FE004D4C8F /* ArticlesUseCase.swift in Sources */,
