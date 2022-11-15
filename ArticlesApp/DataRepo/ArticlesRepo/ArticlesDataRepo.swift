@@ -9,10 +9,11 @@ import Foundation
 
 protocol ArticlesDataRepoInterface {
     func fetch() async throws -> [ArticleEntity]
+    func save(articles: [ArticleEntity]) async throws
 }
 
 class ArticlesDataRepo: ArticlesDomainDataRepoInterface {
-   
+    
     private let repo:ArticlesDataRepoInterface
     
     init(_ repo: ArticlesDataRepoInterface) {
@@ -23,4 +24,7 @@ class ArticlesDataRepo: ArticlesDomainDataRepoInterface {
         try await self.repo.fetch()
     }
     
+    func save(articles: [ArticleEntity], toDevice: Bool) async throws {
+        try await self.repo.save(articles: articles)
+    }
 }

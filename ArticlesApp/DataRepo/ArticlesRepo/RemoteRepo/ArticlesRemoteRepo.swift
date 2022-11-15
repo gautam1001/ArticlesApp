@@ -22,6 +22,10 @@ class ArticlesRemoteRepo : ArticlesRemoteRepoInterface {
     }
     
     func fetch() async throws -> [ArticleEntity] {
-        try await service.request(url: self.url, type: Articles.self).articles.map{$0.convertToEntity()} 
+        try await service.request(url: self.url, type: Articles.self).articles.map{$0.toEntity()}
+    }
+    
+    func save(articles: [ArticleEntity]) async throws {
+        // call vetwork service
     }
 }

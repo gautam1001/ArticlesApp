@@ -10,7 +10,13 @@ import Foundation
 protocol ArticlesLocalRepoInterface: ArticlesDataRepoInterface {}
 
 class ArticlesLocalRepo: ArticlesLocalRepoInterface {
+    
     func fetch() async throws -> [ArticleEntity] {
         []
     }
+    
+    func save(articles: [ArticleEntity]) async throws {
+        
+    }
+    
 }

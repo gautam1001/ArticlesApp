@@ -16,7 +16,7 @@ struct Article: Decodable {
     let title:String
     let description:String
     
-    func convertToEntity() -> ArticleEntity {
+    func toEntity() -> ArticleEntity {
         ArticleEntity(author: author, title: title, description: description)
     }
 }

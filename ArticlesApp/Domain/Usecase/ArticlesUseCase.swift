@@ -9,6 +9,7 @@ import Foundation
 
 protocol ArticlesUseCaseInterface {
     func fetch() async throws -> [ArticleEntity]
+    func save(articles:[ArticleEntity], toDevice: Bool) async throws
 }
 
 class ArticlesUseCase: ArticlesUseCaseInterface {
@@ -21,5 +22,9 @@ class ArticlesUseCase: ArticlesUseCaseInterface {
     
     func fetch() async throws -> [ArticleEntity] {
          try await self.repo.fetch()
+    }
+    
+    func save(articles:[ArticleEntity], toDevice: Bool) async throws {
+        try await repo.save(articles: articles, toDevice: toDevice)
     }
 }

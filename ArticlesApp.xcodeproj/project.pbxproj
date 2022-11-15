@@ -26,6 +26,10 @@
 		483B1869291563D0004D4C8F /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483B1868291563D0004D4C8F /* NetworkError.swift */; };
 		483B186D291565D6004D4C8F /* ArticlesLocalRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483B186C291565D6004D4C8F /* ArticlesLocalRepo.swift */; };
 		483B187129156895004D4C8F /* ArticleEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483B187029156895004D4C8F /* ArticleEntity.swift */; };
+		483B189A2923979D004D4C8F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483B18992923979D004D4C8F /* CoreDataManager.swift */; };
+		483B18A22923AC2F004D4C8F /* ArticlesAppPersistance.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 483B18A02923AC2F004D4C8F /* ArticlesAppPersistance.xcdatamodeld */; };
+		483B18AA2923AD72004D4C8F /* ArticleDataModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483B18A82923AD72004D4C8F /* ArticleDataModel+CoreDataClass.swift */; };
+		483B18AB2923AD72004D4C8F /* ArticleDataModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483B18A92923AD72004D4C8F /* ArticleDataModel+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +72,10 @@
 		483B1868291563D0004D4C8F /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		483B186C291565D6004D4C8F /* ArticlesLocalRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesLocalRepo.swift; sourceTree = "<group>"; };
 		483B187029156895004D4C8F /* ArticleEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleEntity.swift; sourceTree = "<group>"; };
+		483B18992923979D004D4C8F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		483B18A12923AC2F004D4C8F /* ArticlesAppPersistance.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ArticlesAppPersistance.xcdatamodel; sourceTree = "<group>"; };
+		483B18A82923AD72004D4C8F /* ArticleDataModel+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ArticleDataModel+CoreDataClass.swift"; sourceTree = "<group>"; };
+		483B18A92923AD72004D4C8F /* ArticleDataModel+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ArticleDataModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +130,7 @@
 				483B1876291D6EAD004D4C8F /* Presentation */,
 				483B185A291181E3004D4C8F /* Domain */,
 				483B185D29118262004D4C8F /* DataRepo */,
+				483B189F2923AB09004D4C8F /* Persistance */,
 				483B187A291D6F75004D4C8F /* Resources */,
 				483B182A29117B9A004D4C8F /* Preview Content */,
 			);
@@ -169,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				483B185029117BCB004D4C8F /* NetworkService.swift */,
+				483B18992923979D004D4C8F /* CoreDataManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -289,6 +299,24 @@
 				483B182829117B9A004D4C8F /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		483B189F2923AB09004D4C8F /* Persistance */ = {
+			isa = PBXGroup;
+			children = (
+				483B18A72923AD72004D4C8F /* ArticleDataModel */,
+				483B18A02923AC2F004D4C8F /* ArticlesAppPersistance.xcdatamodeld */,
+			);
+			path = Persistance;
+			sourceTree = "<group>";
+		};
+		483B18A72923AD72004D4C8F /* ArticleDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				483B18A82923AD72004D4C8F /* ArticleDataModel+CoreDataClass.swift */,
+				483B18A92923AD72004D4C8F /* ArticleDataModel+CoreDataProperties.swift */,
+			);
+			path = ArticleDataModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -425,6 +453,9 @@
 				483B185F29118281004D4C8F /* ArticlesDataRepo.swift in Sources */,
 				483B186329118534004D4C8F /* AppDI.swift in Sources */,
 				483B185429117E2E004D4C8F /* ContentViewModel.swift in Sources */,
+				483B18AB2923AD72004D4C8F /* ArticleDataModel+CoreDataProperties.swift in Sources */,
+				483B18A22923AC2F004D4C8F /* ArticlesAppPersistance.xcdatamodeld in Sources */,
+				483B189A2923979D004D4C8F /* CoreDataManager.swift in Sources */,
 				483B1859291181AB004D4C8F /* Environment.swift in Sources */,
 				483B187129156895004D4C8F /* ArticleEntity.swift in Sources */,
 				483B1865291560FF004D4C8F /* ArticlesRemoteRepo.swift in Sources */,
@@ -435,6 +466,7 @@
 				483B1869291563D0004D4C8F /* NetworkError.swift in Sources */,
 				483B185C291181FE004D4C8F /* ArticlesUseCase.swift in Sources */,
 				483B182529117B99004D4C8F /* ArticlesApp.swift in Sources */,
+				483B18AA2923AD72004D4C8F /* ArticleDataModel+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -753,6 +785,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		483B18A02923AC2F004D4C8F /* ArticlesAppPersistance.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				483B18A12923AC2F004D4C8F /* ArticlesAppPersistance.xcdatamodel */,
+			);
+			currentVersion = 483B18A12923AC2F004D4C8F /* ArticlesAppPersistance.xcdatamodel */;
+			path = ArticlesAppPersistance.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 483B181929117B99004D4C8F /* Project object */;
 }
