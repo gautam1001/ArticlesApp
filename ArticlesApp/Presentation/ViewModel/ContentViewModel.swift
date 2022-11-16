@@ -9,19 +9,28 @@ import Foundation
 
 class ContentViewModel {
    
-    let remote:ArticlesUseCaseInterface
-    let local:ArticlesUseCaseInterface
+    let remoteUsecase: ArticlesUseCaseInterface
+    let localUsecase: ArticlesUseCaseInterface
     
     var articles: [ArticleEntity] = [ArticleEntity]()
     
-    init(remotecase: ArticlesUseCaseInterface, localcase:ArticlesUseCaseInterface) {
-        self.remote = remotecase
-        self.local = localcase
+    init(remoteUsecase: ArticlesUseCaseInterface, localUsecase:ArticlesUseCaseInterface) {
+        self.remoteUsecase = remoteUsecase
+        self.localUsecase = localUsecase
     }
     
-    func fetchArticles() async throws -> [ArticleEntity] {
+    func fetchArticlesRemotely() async throws -> [ArticleEntity] {
         do {
-            articles = try await remote.fetch()
+            articles = try await remoteUsecase.fetch()
+        } catch {
+            throw error
+        }
+        return articles
+    }
+    
+    func fetchArticlesLocally() async throws -> [ArticleEntity] {
+        do {
+            articles = try await localUsecase.fetch()
         } catch {
             throw error
         }
@@ -29,7 +38,7 @@ class ContentViewModel {
     }
     
     func saveToDevice() async throws {
-        try await local.save(articles: articles)
+        try await localUsecase.save(articles: articles)
     }
     
 }

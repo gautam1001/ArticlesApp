@@ -17,9 +17,13 @@ struct ContentView: View {
             Text("Hello, world!")
         }.task {
             do {
-                let articles = try await viewModel.fetchArticles()
+                print("\n============== Remote =================\n")
+                let articles = try await viewModel.fetchArticlesRemotely()
                 print(articles)
                 try await viewModel.saveToDevice()
+                print("\n============== Local =================\n")
+                let localArticles = try await viewModel.fetchArticlesLocally()
+                print(localArticles)
             } catch {
                 print(error)
             }
