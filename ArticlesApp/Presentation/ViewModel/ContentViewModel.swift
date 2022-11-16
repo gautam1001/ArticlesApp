@@ -21,7 +21,7 @@ class ContentViewModel {
     
     func fetchArticles() async throws -> [ArticleEntity] {
         do {
-            articles = try await local.fetch()
+            articles = try await remote.fetch()
         } catch {
             throw error
         }
