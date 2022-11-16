@@ -44,6 +44,18 @@ class CoreDataManager {
         return container
     }()
     
+    func fetchManagedObject<T: NSManagedObject>(managedObject: T.Type) throws -> [T]?
+    {
+        do {
+            guard let result = try mainContext.fetch(managedObject.fetchRequest()) as? [T] else {return nil}
+
+            return result
+
+        } catch let error {
+            throw error
+        }
+    }
+    
     func getCoreDataDBPath() {
             let path = FileManager
                 .default

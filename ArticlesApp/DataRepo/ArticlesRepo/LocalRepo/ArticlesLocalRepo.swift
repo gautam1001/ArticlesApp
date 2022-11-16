@@ -21,7 +21,7 @@ class ArticlesLocalRepo: ArticlesLocalRepoInterface {
     
     func fetch() async throws -> [ArticleEntity] {
         do {
-           return try ArticleDataModel.fetchRequest().execute().map{ $0.toEntity()}
+            return try (dataManager.fetchManagedObject(managedObject: ArticleDataModel.self) ?? []).map{$0.toEntity()}
         } catch {
             throw error
         }
@@ -35,7 +35,6 @@ class ArticlesLocalRepo: ArticlesLocalRepoInterface {
             model.author = article.author
             do {
                 try dataManager.backgroundContext.save()
-               // try dataManager.backgroundContext.parent?.save()
                 print("### Saved locally ####")
             } catch {
                 print("### Unable to save: \(error.localizedDescription) ####")
