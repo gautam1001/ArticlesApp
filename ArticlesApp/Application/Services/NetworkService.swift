@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class NetworkService {
     
@@ -18,5 +19,15 @@ class NetworkService {
         } catch {
             throw error
         }
+    }
+    
+    func request<T:Decodable>(url:String, type:T.Type, decoder: JSONDecoder = JSONDecoder()) -> AnyPublisher<T,Error>{
+        guard let url = URL(string: url) else { return Fail(error: NetworkError.badUrl).eraseToAnyPublisher() }
+        return URLSession.shared.dataTaskPublisher(for: url)
+            .receive(on: RunLoop.main)
+            .map(\.data)
+            .decode(type: T.self, decoder: decoder)
+            .catch {error in Fail(error: error)}
+            .eraseToAnyPublisher()
     }
 }
