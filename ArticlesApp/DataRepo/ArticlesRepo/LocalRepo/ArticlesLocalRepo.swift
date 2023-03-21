@@ -7,12 +7,14 @@
 
 import Foundation
 import CoreData
+import Combine
 
 protocol ArticlesLocalRepoInterface: ArticlesDataRepoInterface {
     init(dataManager: CoreDataManager)
 }
 
 class ArticlesLocalRepo: ArticlesLocalRepoInterface {
+    
     private let dataManager:CoreDataManager
     
     required init(dataManager: CoreDataManager) {
@@ -25,6 +27,10 @@ class ArticlesLocalRepo: ArticlesLocalRepoInterface {
         } catch {
             throw error
         }
+    }
+    
+    func fetch() -> AnyPublisher<[ArticleEntity], Error> {
+         Empty<[ArticleEntity],Error>().eraseToAnyPublisher()
     }
     
     func save(articles: [ArticleEntity]) async throws {

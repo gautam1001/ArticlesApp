@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import Combine
 
 protocol ArticlesDataRepoInterface {
     func fetch() async throws -> [ArticleEntity]
     func save(articles: [ArticleEntity]) async throws
+    func fetch() -> AnyPublisher<[ArticleEntity], Error>
 }
 
 class ArticlesDataRepo: ArticlesDomainDataRepoInterface {
@@ -22,6 +24,10 @@ class ArticlesDataRepo: ArticlesDomainDataRepoInterface {
     
     func fetch() async throws -> [ArticleEntity] {
         try await self.repo.fetch()
+    }
+    
+    func fetch() -> AnyPublisher<[ArticleEntity], Error> {
+        return repo.fetch()
     }
     
     func save(articles: [ArticleEntity]) async throws {

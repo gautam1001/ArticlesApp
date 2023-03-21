@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import Combine
 
 protocol ArticlesUseCaseInterface {
     func fetch() async throws -> [ArticleEntity]
+    func fetch() -> AnyPublisher<[ArticleEntity], Error>
     func save(articles:[ArticleEntity]) async throws
 }

@@ -6,29 +6,51 @@
 //
 
 import SwiftUI
+import Combine
 
+//MARK: Using Asyn-Await API
+//struct ContentView: View {
+//
+//    @ObservedObject var viewModel: ContentViewModel
+//
+//    var body: some View {
+//        VStack {
+//            Image(systemName: "globe")
+//                .imageScale(.large)
+//                .foregroundColor(.accentColor)
+//            Text("Hello, world!")
+//        }.task {
+//            do {
+//                print("\n============== Remote =================\n")
+//                let articles = try await viewModel.fetchArticlesRemotely()
+//                print(articles)
+//                print("\n============== Save locally =================\n")
+//                try await viewModel.saveToDevice()
+//                print("\n============== Fetch from local storage =================\n")
+//                let localArticles = try await viewModel.fetchArticlesLocally()
+//                print(localArticles)
+//            } catch {
+//                print(error)
+//            }
+//
+//        }
+//        .padding()
+//    }
+//}
+
+//MARK: Using Combine framework - AnyPublisher
 struct ContentView: View {
-    let viewModel: ContentViewModel
+   @ObservedObject var viewModel: ContentViewModel
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }.task {
-            do {
-                print("\n============== Remote =================\n")
-                let articles = try await viewModel.fetchArticlesRemotely()
-                print(articles)
-                try await viewModel.saveToDevice()
-                print("\n============== Local =================\n")
-                let localArticles = try await viewModel.fetchArticlesLocally()
-                print(localArticles)
-            } catch {
-                print(error)
+        List {
+            ForEach(viewModel.articles) { enitity in
+                Text(enitity.title ?? "No title")
             }
         }
-        .padding()
+        .onAppear {
+           viewModel.fetchArticlesRemotely()
+        }
     }
 }
 

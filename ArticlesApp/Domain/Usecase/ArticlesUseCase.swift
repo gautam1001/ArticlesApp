@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class ArticlesUseCase: ArticlesUseCaseInterface {
     
@@ -17,6 +18,10 @@ class ArticlesUseCase: ArticlesUseCaseInterface {
     
     func fetch() async throws -> [ArticleEntity] {
          try await self.repo.fetch()
+    }
+    
+    func fetch() -> AnyPublisher<[ArticleEntity], Error> {
+        return self.repo.fetch()
     }
     
     func save(articles:[ArticleEntity]) async throws {

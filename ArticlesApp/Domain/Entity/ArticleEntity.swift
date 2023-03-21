@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct ArticleEntity {
+struct ArticleEntity:Identifiable {
+    let id:UUID = UUID()
     let author:String?
     let title:String?
     let description:String?

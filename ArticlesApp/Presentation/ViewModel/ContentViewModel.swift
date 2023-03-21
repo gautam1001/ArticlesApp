@@ -6,13 +6,16 @@
 //
 
 import Foundation
+import Combine
 
-class ContentViewModel {
+class ContentViewModel: ObservableObject {
    
     let remoteUsecase: ArticlesUseCaseInterface
     let localUsecase: ArticlesUseCaseInterface
     
-    var articles: [ArticleEntity] = [ArticleEntity]()
+    @Published var articles: [ArticleEntity] = [ArticleEntity]()
+    
+    var cancellable: Set<AnyCancellable> = []
     
     init(remoteUsecase: ArticlesUseCaseInterface, localUsecase:ArticlesUseCaseInterface) {
         self.remoteUsecase = remoteUsecase
@@ -20,17 +23,23 @@ class ContentViewModel {
     }
     
     func fetchArticlesRemotely() async throws -> [ArticleEntity] {
-        do {
-            articles = try await remoteUsecase.fetch()
-        } catch {
-            throw error
-        }
-        return articles
+        return try await remoteUsecase.fetch()
+    }
+    
+    func fetchArticlesRemotely() {
+        remoteUsecase.fetch().sink { completion in
+            switch completion {
+            case .finished: print("Articles downloaded successfully!!!!!")
+            case .failure(let error): print(error.localizedDescription)
+            }
+        } receiveValue: { [weak self] entities in
+            self?.articles = entities
+        }.store(in: &cancellable)
     }
     
     func fetchArticlesLocally() async throws -> [ArticleEntity] {
         do {
-            articles = try await localUsecase.fetch()
+            self.articles = try await localUsecase.fetch()
         } catch {
             throw error
         }
