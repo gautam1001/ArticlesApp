@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class ContentViewModel: ObservableObject {
+@MainActor class ContentViewModel: ObservableObject {
    
     let remoteUsecase: ArticlesUseCaseInterface
     let localUsecase: ArticlesUseCaseInterface
@@ -22,10 +22,20 @@ class ContentViewModel: ObservableObject {
         self.localUsecase = localUsecase
     }
     
-    func fetchArticlesRemotely() async throws -> [ArticleEntity] {
-        return try await remoteUsecase.fetch()
+    //MARK:  Asyn-Await API Implementation
+    func fetchArticlesRemotely() async throws {
+        self.articles =  try await remoteUsecase.fetch()
     }
     
+    func fetchArticlesLocally() async throws {
+         self.articles = try await localUsecase.fetch()
+    }
+    
+    func saveToDevice() async throws {
+        try await localUsecase.save(articles: articles)
+    }
+    
+    //MARK: Combine framework - AnyPublisher Implementation
     func fetchArticlesRemotely() {
         remoteUsecase.fetch().sink { completion in
             switch completion {
@@ -35,19 +45,6 @@ class ContentViewModel: ObservableObject {
         } receiveValue: { [weak self] entities in
             self?.articles = entities
         }.store(in: &cancellable)
-    }
-    
-    func fetchArticlesLocally() async throws -> [ArticleEntity] {
-        do {
-            self.articles = try await localUsecase.fetch()
-        } catch {
-            throw error
-        }
-        return articles
-    }
-    
-    func saveToDevice() async throws {
-        try await localUsecase.save(articles: articles)
     }
     
 }

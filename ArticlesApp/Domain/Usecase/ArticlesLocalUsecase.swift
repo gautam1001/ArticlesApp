@@ -16,15 +16,17 @@ class ArticlesLocalUsecase: ArticlesUseCaseInterface {
         self.repo = repo
     }
     
+    //MARK: Asyn-Await API Implementation
     func fetch() async throws -> [ArticleEntity] {
          try await self.repo.fetch()
+    }
+    
+    func save(articles:[ArticleEntity]) async throws {
+        try await repo.save(articles: articles)
     }
     
     func fetch() -> AnyPublisher<[ArticleEntity], Error> {
         return self.repo.fetch()
     }
     
-    func save(articles:[ArticleEntity]) async throws {
-        try await repo.save(articles: articles)
-    }
 }

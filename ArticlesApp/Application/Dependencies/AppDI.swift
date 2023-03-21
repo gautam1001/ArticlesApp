@@ -9,7 +9,7 @@ import Foundation
 
 class AppDI {
     
-    func articlesDI() -> ContentViewModel {
+    @MainActor func articlesDI() -> ContentViewModel {
         
         let remoteRepo =  ArticlesRemoteRepo(url: Environment.articlesUrl, service: NetworkService())
         let remoteDataRepo = ArticlesDataRepo(remoteRepo)

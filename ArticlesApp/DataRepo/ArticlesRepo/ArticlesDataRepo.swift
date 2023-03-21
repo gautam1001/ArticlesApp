@@ -9,8 +9,11 @@ import Foundation
 import Combine
 
 protocol ArticlesDataRepoInterface {
+    //MARK: Asyn-Await API Implementation
     func fetch() async throws -> [ArticleEntity]
     func save(articles: [ArticleEntity]) async throws
+    
+    //MARK: Combine framework - AnyPublisher Implementation
     func fetch() -> AnyPublisher<[ArticleEntity], Error>
 }
 
@@ -22,15 +25,19 @@ class ArticlesDataRepo: ArticlesDomainDataRepoInterface {
         self.repo = repo
     }
     
+    //MARK: Asyn-Await API Implementation
     func fetch() async throws -> [ArticleEntity] {
         try await self.repo.fetch()
-    }
-    
-    func fetch() -> AnyPublisher<[ArticleEntity], Error> {
-        return repo.fetch()
     }
     
     func save(articles: [ArticleEntity]) async throws {
         try await self.repo.save(articles: articles)
     }
+    
+    //MARK: Combine framework - AnyPublisher Implementation
+    func fetch() -> AnyPublisher<[ArticleEntity], Error> {
+        return repo.fetch()
+    }
+    
+    
 }

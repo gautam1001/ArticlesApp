@@ -21,16 +21,13 @@ class ArticlesLocalRepo: ArticlesLocalRepoInterface {
         self.dataManager = dataManager
     }
     
+    //MARK: Asyn-Await API Implementation
     func fetch() async throws -> [ArticleEntity] {
         do {
             return try (dataManager.fetchManagedObject(managedObject: ArticleDataModel.self) ?? []).map{$0.toEntity()}
         } catch {
             throw error
         }
-    }
-    
-    func fetch() -> AnyPublisher<[ArticleEntity], Error> {
-         Empty<[ArticleEntity],Error>().eraseToAnyPublisher()
     }
     
     func save(articles: [ArticleEntity]) async throws {
@@ -47,6 +44,11 @@ class ArticlesLocalRepo: ArticlesLocalRepoInterface {
                 throw error
             }
         }
+    }
+    
+    //MARK: Combine framework - AnyPublisher Implementation
+    func fetch() -> AnyPublisher<[ArticleEntity], Error> {
+         Empty<[ArticleEntity],Error>().eraseToAnyPublisher()
     }
     
 }

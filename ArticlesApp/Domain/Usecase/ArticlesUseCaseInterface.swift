@@ -9,7 +9,10 @@ import Foundation
 import Combine
 
 protocol ArticlesUseCaseInterface {
+    //MARK: Asyn-Await API Implementation
+    @discardableResult
     func fetch() async throws -> [ArticleEntity]
-    func fetch() -> AnyPublisher<[ArticleEntity], Error>
     func save(articles:[ArticleEntity]) async throws
+    //MARK: Combine framework - AnyPublisher Implementation
+    func fetch() -> AnyPublisher<[ArticleEntity], Error>
 }

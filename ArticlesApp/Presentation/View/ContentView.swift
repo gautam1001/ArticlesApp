@@ -8,51 +8,52 @@
 import SwiftUI
 import Combine
 
-//MARK: Using Asyn-Await API
-//struct ContentView: View {
-//
-//    @ObservedObject var viewModel: ContentViewModel
-//
-//    var body: some View {
-//        VStack {
-//            Image(systemName: "globe")
-//                .imageScale(.large)
-//                .foregroundColor(.accentColor)
-//            Text("Hello, world!")
-//        }.task {
-//            do {
-//                print("\n============== Remote =================\n")
-//                let articles = try await viewModel.fetchArticlesRemotely()
-//                print(articles)
-//                print("\n============== Save locally =================\n")
-//                try await viewModel.saveToDevice()
-//                print("\n============== Fetch from local storage =================\n")
-//                let localArticles = try await viewModel.fetchArticlesLocally()
-//                print(localArticles)
-//            } catch {
-//                print(error)
-//            }
-//
-//        }
-//        .padding()
-//    }
-//}
+//MARK: Asyn-Await API Implementation
 
-//MARK: Using Combine framework - AnyPublisher
 struct ContentView: View {
-   @ObservedObject var viewModel: ContentViewModel
+
+    @ObservedObject var viewModel: ContentViewModel
 
     var body: some View {
         List {
             ForEach(viewModel.articles) { enitity in
                 Text(enitity.title ?? "No title")
             }
+        }.onAppear {
+            Task {
+                do {
+//                    print("\n============== Remote =================\n")
+//                    try await viewModel.fetchArticlesRemotely()
+//                    print("\n============== Save locally =================\n")
+//                    try await viewModel.saveToDevice()
+                    print("\n============== Fetch from local storage =================\n")
+                    try await viewModel.fetchArticlesLocally()
+                } catch {
+                    print("Error: \(error.localizedDescription)")
+                }
+                
+            }
         }
-        .onAppear {
-           viewModel.fetchArticlesRemotely()
-        }
+        
     }
 }
+
+//MARK: Combine framework - AnyPublisher Implementation
+
+//struct ContentView: View {
+//   @ObservedObject var viewModel: ContentViewModel
+//
+//    var body: some View {
+//        List {
+//            ForEach(viewModel.articles) { enitity in
+//                Text(enitity.title ?? "No title")
+//            }
+//        }
+//        .onAppear {
+//           viewModel.fetchArticlesRemotely()
+//        }
+//    }
+//}
 
 //struct ContentView_Previews: PreviewProvider {
 //    static var previews: some View {
