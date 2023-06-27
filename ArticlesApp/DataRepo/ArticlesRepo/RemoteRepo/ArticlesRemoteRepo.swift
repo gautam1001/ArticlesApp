@@ -23,14 +23,14 @@ class ArticlesRemoteRepo : ArticlesRemoteRepoInterface {
     }
     
     func fetch() async throws -> [ArticleEntity] {
-        try await service.request(url: self.url, type: Articles.self).articles.map{$0.toEntity()}
+        try await service.request(url: self.url, type: Articles.self, decoder: JSONDecoder()).articles.map{$0.toEntity()}
     }
     
     var cancellables = Set<AnyCancellable>()
     var cancellable : AnyCancellable?
     func fetch() -> AnyPublisher<[ArticleEntity], Error> {
         print("===== Inside ArticlesRemoteRepo =====")
-      return  service.request(url: url, type: Articles.self)
+        return  service.request(url: url, type: Articles.self, decoder: JSONDecoder())
             .map(\.articles)
             .map { articles in
                 let list = articles.map{$0.toEntity()}

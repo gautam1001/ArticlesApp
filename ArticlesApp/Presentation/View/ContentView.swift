@@ -22,12 +22,12 @@ struct ContentView: View {
         }.onAppear {
             Task {
                 do {
-//                    print("\n============== Remote =================\n")
-//                    try await viewModel.fetchArticlesRemotely()
+                    print("\n============== Remote =================\n")
+                    try await viewModel.fetchArticlesRemotely()
 //                    print("\n============== Save locally =================\n")
 //                    try await viewModel.saveToDevice()
-                    print("\n============== Fetch from local storage =================\n")
-                    try await viewModel.fetchArticlesLocally()
+//                    print("\n============== Fetch from local storage =================\n")
+//                    try await viewModel.fetchArticlesLocally()
                 } catch {
                     print("Error: \(error.localizedDescription)")
                 }

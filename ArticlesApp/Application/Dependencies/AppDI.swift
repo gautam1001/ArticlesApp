@@ -7,7 +7,12 @@
 
 import Foundation
 
-class AppDI {
+protocol AppDIInterface {
+    func articlesDI() -> ContentViewModel
+}
+
+
+class AppDI: AppDIInterface {
     
     @MainActor func articlesDI() -> ContentViewModel {
         
