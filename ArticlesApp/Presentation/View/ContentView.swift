@@ -20,7 +20,8 @@ struct ContentView: View {
                 Text(enitity.title ?? "No title")
             }
         }.onAppear {
-            Task {
+            viewModel.fetchArticlesRemotely() // combine version
+           /* Task {
                 do {
                     print("\n============== Remote =================\n")
                     try await viewModel.fetchArticlesRemotely()
@@ -32,7 +33,7 @@ struct ContentView: View {
                     print("Error: \(error.localizedDescription)")
                 }
                 
-            }
+            }*/
         }
         
     }

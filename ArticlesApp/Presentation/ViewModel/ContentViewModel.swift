@@ -37,7 +37,9 @@ import Combine
     
     //MARK: Combine framework - AnyPublisher Implementation
     func fetchArticlesRemotely() {
-        remoteUsecase.fetch().sink { completion in
+        remoteUsecase.fetch()
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
             switch completion {
             case .finished: print("Articles downloaded successfully!!!!!")
             case .failure(let error): print(error.localizedDescription)
