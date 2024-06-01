@@ -6,26 +6,55 @@
 //
 
 import SwiftUI
+import Combine
+
+//MARK: Asyn-Await API Implementation
 
 struct ContentView: View {
-    let viewModel: ContentViewModel
+
+    @ObservedObject var viewModel: ContentViewModel
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }.task {
-            do {
-                let articles = try await viewModel.fetchArticles()
-                print(articles)
-            } catch {
-                print(error)
+        List {
+            ForEach(viewModel.articles) { enitity in
+                Text(enitity.title ?? "No title")
             }
+        }.onAppear {
+            viewModel.fetchArticlesRemotely() // combine version
+           /* Task {
+                do {
+                    print("\n============== Remote =================\n")
+                    try await viewModel.fetchArticlesRemotely()
+//                    print("\n============== Save locally =================\n")
+//                    try await viewModel.saveToDevice()
+//                    print("\n============== Fetch from local storage =================\n")
+//                    try await viewModel.fetchArticlesLocally()
+                } catch {
+                    print("Error: \(error.localizedDescription)")
+                }
+                
+            }*/
         }
-        .padding()
+        
     }
 }
+
+//MARK: Combine framework - AnyPublisher Implementation
+
+//struct ContentView: View {
+//   @ObservedObject var viewModel: ContentViewModel
+//
+//    var body: some View {
+//        List {
+//            ForEach(viewModel.articles) { enitity in
+//                Text(enitity.title ?? "No title")
+//            }
+//        }
+//        .onAppear {
+//           viewModel.fetchArticlesRemotely()
+//        }
+//    }
+//}
 
 //struct ContentView_Previews: PreviewProvider {
 //    static var previews: some View {

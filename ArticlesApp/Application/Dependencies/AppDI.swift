@@ -7,14 +7,23 @@
 
 import Foundation
 
-class AppDI {
+protocol AppDIInterface {
+    func articlesDI() -> ContentViewModel
+}
+
+
+class AppDI: AppDIInterface {
     
-    func articlesDI() -> ContentViewModel {
+    @MainActor func articlesDI() -> ContentViewModel {
+        
         let remoteRepo =  ArticlesRemoteRepo(url: Environment.articlesUrl, service: NetworkService())
-        let repo = ArticlesDataRepo(remoteRepo)
-//        let localRepo =  ArticlesLocalRepo()
-//        let repo = ArticlesDataRepo(localRepo)
-        let useCase = ArticlesUseCase(repo: repo)
-        return ContentViewModel(usecase: useCase)
+        let remoteDataRepo = ArticlesDataRepo(remoteRepo)
+        let remoteUsecase = ArticlesUseCase(repo: remoteDataRepo)
+        
+        let localRepo =  ArticlesLocalRepo(dataManager: CoreDataManager.shared)
+        let localDataRepo = ArticlesDataRepo(localRepo)
+        let localUsecase = ArticlesLocalUsecase(repo: localDataRepo)
+        
+        return ContentViewModel(remoteUsecase: remoteUsecase, localUsecase: localUsecase)
     }
 }

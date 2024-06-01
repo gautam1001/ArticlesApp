@@ -6,10 +6,15 @@
 //
 
 import Foundation
+import Combine
 
-class NetworkService {
+protocol NetworkServiceInterface {
+    func request<T:Decodable>(url:String, type:T.Type, decoder: JSONDecoder) async throws -> T
+}
+
+class NetworkService: NetworkServiceInterface {
     
-    func request<T:Decodable>(url:String, type:T.Type, decoder: JSONDecoder = JSONDecoder()) async throws -> T {
+    func request<T:Decodable>(url:String, type:T.Type, decoder: JSONDecoder) async throws -> T {
         guard let url = URL(string: url) else { throw NetworkError.badUrl }
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
@@ -18,5 +23,13 @@ class NetworkService {
         } catch {
             throw error
         }
+    }
+    
+    func request<T:Decodable>(url:String, type:T.Type, decoder: JSONDecoder) -> AnyPublisher<T,Error> {
+        guard let url = URL(string: url) else { return Fail(error: NetworkError.badUrl).eraseToAnyPublisher() }
+        return URLSession.shared.dataTaskPublisher(for: url)
+            .map(\.data)
+            .decode(type: T.self, decoder: decoder)
+            .eraseToAnyPublisher()
     }
 }

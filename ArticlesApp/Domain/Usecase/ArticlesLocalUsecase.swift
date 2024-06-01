@@ -1,14 +1,14 @@
 //
-//  ArticlesUseCase.swift
+//  ArticlesLocalUsecase.swift
 //  ArticlesApp
 //
-//  Created by Prashant Gautam on 01/11/22.
+//  Created by Prashant Gautam on 15/11/22.
 //
 
 import Foundation
 import Combine
 
-class ArticlesUseCase: ArticlesUseCaseInterface {
+class ArticlesLocalUsecase: ArticlesUseCaseInterface {
     
     let repo: ArticlesDomainDataRepoInterface
     
@@ -25,8 +25,8 @@ class ArticlesUseCase: ArticlesUseCaseInterface {
         try await repo.save(articles: articles)
     }
     
-    //MARK: Combine framework - AnyPublisher Implementation
     func fetch() -> AnyPublisher<[ArticleEntity], Error> {
         return self.repo.fetch()
     }
+    
 }

@@ -88,4 +88,5 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
-ArticlesApp/Persistance/.DS_Store
+ArticlesApp/.DS_Store
+.DS_Store
