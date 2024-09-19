@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-@MainActor class ContentViewModel: ObservableObject {
+ class ContentViewModel: ObservableObject {
    
     let remoteUsecase: ArticlesUseCaseInterface
     let localUsecase: ArticlesUseCaseInterface

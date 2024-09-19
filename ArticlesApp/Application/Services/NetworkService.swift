@@ -29,7 +29,7 @@ class NetworkService: NetworkServiceInterface {
         guard let url = URL(string: url) else { return Fail(error: NetworkError.badUrl).eraseToAnyPublisher() }
         return URLSession.shared.dataTaskPublisher(for: url)
             .map(\.data)
-            .decode(type: T.self, decoder: decoder)
+            .decode(type: type, decoder: decoder)
             .eraseToAnyPublisher()
     }
 }
